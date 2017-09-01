@@ -31,7 +31,7 @@ jekyll serve: false
 host:        0.0.0.0
 port:        4000
 baseurl:     /
-url:         http://0.0.0.0:4000
+url:         http://127.0.0.1
 lsi:         false
 
 maruku:
