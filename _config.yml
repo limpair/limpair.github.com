@@ -1,89 +1,165 @@
-title:            Site Title
-description:      Describe your website here.
-disqus_shortname: 
-reading_time:     true
-words_per_minute: 200
-# Your site's domain goes here (eg: https://mmistakes.github.io, http://yourdomain.com, etc)
-# When testing locally leave blank or use http://localhost:4000
-url:
+source:      .
+destination: _site
+plugins_dir: _plugins
+layouts_dir: _layouts
+include:    ['.htaccess']
+exclude:    []
+keep_files: ['.git','.svn']
+timezone:   nil
 
-# Owner/author information
-owner:
-  name:           Your Name
-  avatar:         avatar.jpg
-  bio:            "Your bio goes here. It shouldn't be super long but a good sentence or two should suffice."
-  email:          you@email.com
-  # Social networking links used in footer. Update and remove as you like.
-  twitter:        
-  facebook:       
-  github:         
-  stackexchange:  
-  linkedin:       
-  instagram:      
-  flickr:         
-  tumblr:         
-  # google plus id, include the '+', eg +mmistakes
-  google_plus:
+future:     true
+show_drafts: nil
+limit_posts: 0
+highlighter: pygments
 
-# Background image to be tiled on all pages
-background: 
+#relative_permalinks: true
 
-# Analytics and webmaster tools stuff goes here
-google_analytics:   
-google_verify:      
-# https://ssl.bing.com/webmaster/configure/verify/ownership Option 2 content= goes here
-bing_verify:         
+#paginate: 5
+permalink:     date
+paginate_path: 'page:num'
 
-# http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-timezone:    America/New_York
-future:      false  # publish future dated posts --  true, false (default) 
-highlighter: rouge
-markdown:    kramdown
-gems:
-  - jekyll-sitemap
-  - jekyll-paginate
-  - jekyll-gist
-  - jekyll-feed
-sass:
-  sass_dir: _sass
-  style: compressed
+markdown:      kramdown
+markdown_ext:  markdown,mkd,mkdn,md
+textile_ext:   textile
 
-# https://github.com/mojombo/jekyll/wiki/Permalinks
-permalink:   /:categories/:title/
+excerpt_separator: "\n\n"
 
-# Amount of post to show on home page
-paginate: 5
+safe:        false
+#watch:       false    # deprecated
+#server:      false    # deprecated
+jekyll serve: false
+host:        0.0.0.0
+port:        4000
+baseurl:     /
+url:         http://0.0.0.0:4000
+lsi:         false
+
+maruku:
+  use_tex:    false
+  use_divs:   false
+  png_engine: blahtex
+  png_dir:    images/latex
+  png_url:    /images/latex
+
+rdiscount:
+  extensions: []
+
+redcarpet:
+  extensions: []
 
 kramdown:
-  input: GFM
   auto_ids: true
   footnote_nr: 1
   entity_output: as_char
   toc_levels: 1..6
+  smart_quotes: lsquo,rsquo,ldquo,rdquo
   enable_coderay: false
 
-include: 
-  - .htaccess
-exclude: 
-  - "*.less"
-  - "*.sublime-project"
-  - "*.sublime-workspace"
-  - .asset-cache
-  - .bundle
-  - .jekyll-assets-cache
-  - .sass-cache
-  - CHANGELOG
-  - Capfile
-  - Gemfile
-  - Gruntfile.js
-  - LICENSE
-  - README
-  - Rakefile
-  - config
-  - gulpfile.js
-  - lib
-  - log
-  - node_modules
-  - package.json
-  - spec
-  - tmp
+  syntax_highlighter_opts:
+    wrap: div
+    line_numbers: inline
+    line_numbers_start: 1
+    tab_width: 4
+    bold_every: 10
+    css: style
+
+redcloth:
+  hard_breaks: true
+plugins: [jekyll-paginate,jekyll-sitemap,jekyll-sitemap,jekyll-sitemap,jekyll-gist,jekyll-feed]
+
+owner:
+  name: 依然繁华
+  avatar: avatar.png
+  github: limpair
+  email: lucasimpair@gmail.com
+  bio: "你带来欢笑，我有幸得到"
+
+# title:            Site Title
+# description:      Describe your website here.
+# disqus_shortname: 
+# reading_time:     true
+# words_per_minute: 200
+# # Your site's domain goes here (eg: https://mmistakes.github.io, http://yourdomain.com, etc)
+# # When testing locally leave blank or use http://localhost:4000
+# url:
+
+# # Owner/author information
+# owner:
+#   name:           Your Name
+#   avatar:         avatar.jpg
+#   bio:            "Your bio goes here. It shouldn't be super long but a good sentence or two should suffice."
+#   email:          you@email.com
+#   # Social networking links used in footer. Update and remove as you like.
+#   twitter:        
+#   facebook:       
+#   github:         
+#   stackexchange:  
+#   linkedin:       
+#   instagram:      
+#   flickr:         
+#   tumblr:         
+#   # google plus id, include the '+', eg +mmistakes
+#   google_plus:
+
+# # Background image to be tiled on all pages
+# background: 
+
+# # Analytics and webmaster tools stuff goes here
+# google_analytics:   
+# google_verify:      
+# # https://ssl.bing.com/webmaster/configure/verify/ownership Option 2 content= goes here
+# bing_verify:         
+
+# # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+# timezone:    America/New_York
+# future:      false  # publish future dated posts --  true, false (default) 
+# highlighter: rouge
+# markdown:    kramdown
+# gems:
+#   - jekyll-sitemap
+#   - jekyll-paginate
+#   - jekyll-gist
+#   - jekyll-feed
+# sass:
+#   sass_dir: _sass
+#   style: compressed
+
+# # https://github.com/mojombo/jekyll/wiki/Permalinks
+# permalink:   /:categories/:title/
+
+# # Amount of post to show on home page
+# paginate: 5
+
+# kramdown:
+#   input: GFM
+#   auto_ids: true
+#   footnote_nr: 1
+#   entity_output: as_char
+#   toc_levels: 1..6
+#   enable_coderay: false
+
+# include: 
+#   - .htaccess
+# exclude: 
+#   - "*.less"
+#   - "*.sublime-project"
+#   - "*.sublime-workspace"
+#   - .asset-cache
+#   - .bundle
+#   - .jekyll-assets-cache
+#   - .sass-cache
+#   - CHANGELOG
+#   - Capfile
+#   - Gemfile
+#   - Gruntfile.js
+#   - LICENSE
+#   - README
+#   - Rakefile
+#   - config
+#   - gulpfile.js
+#   - lib
+#   - log
+#   - node_modules
+#   - package.json
+#   - spec
+#   - tmp
