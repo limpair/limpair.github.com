@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" /><updated>2017-12-11T08:04:58+00:00</updated><id>http://0.0.0.0:4000/</id><title type="html">依然繁华</title><entry><title type="html">NTP配置</title><link href="http://0.0.0.0:4000/2017/12/11/NTP%E9%85%8D%E7%BD%AE.html" rel="alternate" type="text/html" title="NTP配置" /><published>2017-12-11T00:00:00+00:00</published><updated>2017-12-11T00:00:00+00:00</updated><id>http://0.0.0.0:4000/2017/12/11/NTP%E9%85%8D%E7%BD%AE</id><content type="html" xml:base="http://0.0.0.0:4000/2017/12/11/NTP%E9%85%8D%E7%BD%AE.html">&lt;h2 id=&quot;基本命令&quot;&gt;基本命令&lt;/h2&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span&gt;&lt;/span&gt;  
+yum install ntp &lt;span class=&quot;c1&quot;&gt;#centos在线安装  &lt;/span&gt;
+ntpdate &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;.cn.pool.ntp.org &lt;span class=&quot;c1&quot;&gt;#同步服务器时间  &lt;/span&gt;
+systemctl &lt;span class=&quot;nb&quot;&gt;enable&lt;/span&gt; ntpd &lt;span class=&quot;c1&quot;&gt;#开机自启  &lt;/span&gt;
+systemctl start/stop/restart ntpd  
+timedatectl set-ntp &lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#开启时间同步&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h2 id=&quot;基本配置&quot;&gt;基本配置&lt;/h2&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span&gt;&lt;/span&gt;   
+&lt;span class=&quot;c1&quot;&gt;# 本地server配置&lt;/span&gt;
+vim /etc/ntp.conf  
+  
+restruct &lt;span class=&quot;m&quot;&gt;192&lt;/span&gt;.168.1.0 mask &lt;span class=&quot;m&quot;&gt;255&lt;/span&gt;.255.255.0 &lt;span class=&quot;c1&quot;&gt;#内网运行访问配置  &lt;/span&gt;
+server &lt;span class=&quot;m&quot;&gt;127&lt;/span&gt;.127.1.0 &lt;span class=&quot;c1&quot;&gt;#本地服务器  &lt;/span&gt;
+server &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;.cn.pool.ntp.org  &lt;span class=&quot;c1&quot;&gt;#公网ntp服务器&lt;/span&gt;
+server &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;.cn.pool.ntp.org  
+server &lt;span class=&quot;m&quot;&gt;2&lt;/span&gt;.cn.pool.ntp.org  
+server &lt;span class=&quot;m&quot;&gt;3&lt;/span&gt;.cn.pool.ntp.org  
+  
+&lt;span class=&quot;c1&quot;&gt;# 本地client配置&lt;/span&gt;
+vim /etc/ntp.conf  
+  
+server &lt;span class=&quot;m&quot;&gt;192&lt;/span&gt;.168.1.1 &lt;span class=&quot;c1&quot;&gt;#本地服务器  &lt;/span&gt;
+server &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;.cn.pool.ntp.org  &lt;span class=&quot;c1&quot;&gt;#公网ntp服务器  &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h2 id=&quot;基本步骤&quot;&gt;基本步骤&lt;/h2&gt;
+&lt;h3 id=&quot;在线情况&quot;&gt;在线情况&lt;/h3&gt;
+&lt;ol&gt;
+  &lt;li&gt;安装ntp服务&lt;/li&gt;
+  &lt;li&gt;与互联网同步时间&lt;/li&gt;
+  &lt;li&gt;配置ntp.conf文件&lt;/li&gt;
+  &lt;li&gt;设置开机自启&lt;/li&gt;
+  &lt;li&gt;启动ntp服务&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;离线情况&quot;&gt;离线情况&lt;/h3&gt;
+&lt;ol&gt;
+  &lt;li&gt;安装ntp服务&lt;/li&gt;
+  &lt;li&gt;配置ntp.conf文件&lt;/li&gt;
+  &lt;li&gt;设置开机自启&lt;/li&gt;
+  &lt;li&gt;启动ntp服务&lt;/li&gt;
+&lt;/ol&gt;</content><author><name></name></author><category term="Linux" /><summary type="html">基本命令 yum install ntp #centos在线安装 ntpdate 0.cn.pool.ntp.org #同步服务器时间 systemctl enable ntpd #开机自启 systemctl start/stop/restart ntpd timedatectl set-ntp true #开启时间同步 基本配置 # 本地server配置 vim /etc/ntp.conf restruct 192.168.1.0 mask 255.255.255.0 #内网运行访问配置 server 127.127.1.0 #本地服务器 server 0.cn.pool.ntp.org #公网ntp服务器 server 1.cn.pool.ntp.org server 2.cn.pool.ntp.org server 3.cn.pool.ntp.org # 本地client配置 vim /etc/ntp.conf server 192.168.1.1 #本地服务器 server 0.cn.pool.ntp.org #公网ntp服务器 基本步骤 在线情况 安装ntp服务 与互联网同步时间 配置ntp.conf文件 设置开机自启 启动ntp服务 离线情况 安装ntp服务 配置ntp.conf文件 设置开机自启 启动ntp服务</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://0.0.0.0:4000/%7B%22feature%22=%3E%22time.jpg%22%7D" /></entry><entry><title type="html">DCE安装</title><link href="http://0.0.0.0:4000/2017/10/20/DCE%E5%AE%89%E8%A3%85.html" rel="alternate" type="text/html" title="DCE安装" /><published>2017-10-20T00:00:00+00:00</published><updated>2017-10-20T00:00:00+00:00</updated><id>http://0.0.0.0:4000/2017/10/20/DCE%E5%AE%89%E8%A3%85</id><content type="html" xml:base="http://0.0.0.0:4000/2017/10/20/DCE%E5%AE%89%E8%A3%85.html">&lt;h2 id=&quot;基本步骤&quot;&gt;基本步骤&lt;/h2&gt;
+&lt;ol&gt;
+  &lt;li&gt;安装配置NTP服务&lt;/li&gt;
+  &lt;li&gt;安装Docker&lt;/li&gt;
+  &lt;li&gt;安装DCE组件&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;26安装&quot;&gt;2.6安装&lt;/h2&gt;
+&lt;h3 id=&quot;在线&quot;&gt;在线&lt;/h3&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;#install docker&lt;/span&gt;
+sudo yum install -y yum-utils  
+sudo yum-config-manager --add-repo https://download.daocloud.io/docker/linux/centos/docker-ce.repo  
+sudo yum install -y -q --setopt&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;obsoletes&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; docker-ce-17.03.1.ce*  
+sudo systemctl &lt;span class=&quot;nb&quot;&gt;enable&lt;/span&gt; docker  
+sudo systemctl start docker  
+setenforce &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; sed -i &lt;span class=&quot;s1&quot;&gt;&amp;#39;/^SELINUX=/c\SELINUX=disabled&amp;#39;&lt;/span&gt; /etc/selinux/config  
+systemctl stop firewalld  
+systemctl disable firewalld.service  
+service docker restart  
+&lt;span class=&quot;c1&quot;&gt;#install dce  &lt;/span&gt;
+bash -c &lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;docker run --rm daocloud.io/daocloud/dce install&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;  &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h3 id=&quot;离线&quot;&gt;离线&lt;/h3&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;#install docker  &lt;/span&gt;
+tar -zxvf docker-offline-17.03.1-ce-centos7.2.tar.gz  
+&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; docker-offline-17.03.1-ce-centos7.2  
+chmod +x install.sh  
+bash install.sh  
+&lt;span class=&quot;c1&quot;&gt;#配置 Docker&lt;/span&gt;
+chkconfig docker on  
+setenforce &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; sed -i &lt;span class=&quot;s1&quot;&gt;&amp;#39;/^SELINUX=/c\SELINUX=disabled&amp;#39;&lt;/span&gt; /etc/selinux/config  
+systemctl stop firewalld  
+systemctl disable firewalld.service  
+service docker restart  
+&lt;span class=&quot;c1&quot;&gt;#install dce  &lt;/span&gt;
+gzip -dc dce.tar.gz &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; docker load  
+bash -c &lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;docker run --rm daocloud.io/daocloud/dce install&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;  &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h2 id=&quot;28安装&quot;&gt;2.8安装&lt;/h2&gt;
+&lt;h3 id=&quot;在线-1&quot;&gt;在线&lt;/h3&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;VERSION&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;2&lt;/span&gt;.8.0 &lt;span class=&quot;c1&quot;&gt;#可以修改为指定的版本  &lt;/span&gt;
+curl -L https://qiniu-download-public.daocloud.io/DaoCloud_Enterprise/&lt;span class=&quot;nv&quot;&gt;$VERSION&lt;/span&gt;/dce-installer  &amp;gt; /usr/local/bin/dce-installer  
+chmod +x /usr/local/bin/dce-installer  
+dce-installer  
+dce-installer prepare-docker -q  
+bash -c &lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;docker run --rm daocloud.io/daocloud/dce:&lt;span class=&quot;nv&quot;&gt;$VERSION&lt;/span&gt; install&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;  &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h3 id=&quot;离线-1&quot;&gt;离线&lt;/h3&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span&gt;&lt;/span&gt;tar -xvf dce-2.8.0.tar  
+&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; dce-2.8.0  
+ls  
+&lt;span class=&quot;c1&quot;&gt;#dce-installer  dce-installer-registry.tar  README.md  registry  repo&lt;/span&gt;
+./dce-installer prepare-docker  
+./dce-installer up-installer-registry --image-path&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/path/to/dce-installer-registry.tar  
+bash -c &lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;docker run -i --rm -e &lt;span class=&quot;nv&quot;&gt;HUB_PREFIX&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;lt;this-machine-ip&amp;gt;:15000/daocloud &amp;lt;this-machine-ip&amp;gt;:15000/daocloud/dce:2.8.0 install&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;  &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name></name></author><category term="Daocloud" /><summary type="html">基本步骤 安装配置NTP服务 安装Docker 安装DCE组件 2.6安装 在线 #install docker sudo yum install -y yum-utils sudo yum-config-manager --add-repo https://download.daocloud.io/docker/linux/centos/docker-ce.repo sudo yum install -y -q --setopt=obsoletes=0 docker-ce-17.03.1.ce* sudo systemctl enable docker sudo systemctl start docker setenforce 0 &amp;amp;&amp;amp; sed -i &amp;#39;/^SELINUX=/c\SELINUX=disabled&amp;#39; /etc/selinux/config systemctl stop firewalld systemctl disable firewalld.service service docker restart #install dce bash -c &amp;quot;$(docker run --rm daocloud.io/daocloud/dce install)&amp;quot; 离线 #install docker tar -zxvf docker-offline-17.03.1-ce-centos7.2.tar.gz cd docker-offline-17.03.1-ce-centos7.2 chmod +x install.sh bash install.sh #配置 Docker chkconfig docker on setenforce 0 &amp;amp;&amp;amp; sed -i &amp;#39;/^SELINUX=/c\SELINUX=disabled&amp;#39; /etc/selinux/config systemctl stop firewalld systemctl disable firewalld.service service docker restart #install dce gzip -dc dce.tar.gz | docker load bash -c &amp;quot;$(docker run --rm daocloud.io/daocloud/dce install)&amp;quot; 2.8安装 在线 export VERSION=2.8.0 #可以修改为指定的版本 curl -L https://qiniu-download-public.daocloud.io/DaoCloud_Enterprise/$VERSION/dce-installer &amp;gt; /usr/local/bin/dce-installer chmod +x /usr/local/bin/dce-installer dce-installer dce-installer prepare-docker -q bash -c &amp;quot;$(docker run --rm daocloud.io/daocloud/dce:$VERSION install)&amp;quot; 离线 tar -xvf dce-2.8.0.tar cd dce-2.8.0 ls #dce-installer dce-installer-registry.tar README.md registry repo ./dce-installer prepare-docker ./dce-installer up-installer-registry --image-path=/path/to/dce-installer-registry.tar bash -c &amp;quot;$(docker run -i --rm -e HUB_PREFIX=&amp;lt;this-machine-ip&amp;gt;:15000/daocloud &amp;lt;this-machine-ip&amp;gt;:15000/daocloud/dce:2.8.0 install)&amp;quot;</summary></entry></feed>
